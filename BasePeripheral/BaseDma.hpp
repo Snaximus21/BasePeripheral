@@ -64,7 +64,7 @@ namespace BasePeripheral {
 			}
 		};
 
-		// Структура для хранения настроек GPIO
+		// Структура для хранения настроек DMA
 		struct Settings
 		{
 		private:
@@ -85,12 +85,18 @@ namespace BasePeripheral {
 			// Конструктор с параметрами по умолчанию
 			Settings(
 				Direction direction = Direction::PeriphToMemory,
-				Mode mode = Mode::Normal, // значение по умолчанию для режима
+				Mode mode = Mode::Normal,
 				Priority priority = Priority::Low,
 				MemorySettings periphOrMemToMemSrc = MemorySettings(),
 				MemorySettings memoryOrMemToMemDst = MemorySettings()
 			) : _direction(direction), _mode(mode), _priority(priority), _periphOrMemToMemSrc(periphOrMemToMemSrc), _memoryOrMemToMemDst(memoryOrMemToMemDst) {}
 
+			//Функции билдера
+			Settings& setDirection(Direction direction) { _direction = direction; return *this; }
+			Settings& setMode(Mode mode) { _mode = mode; return *this; }
+			Settings& setPriority(Priority priority) { _priority = priority; return *this; }
+			Settings& setPeriphOrMemToMemSrc(MemorySettings memorySettings) { _periphOrMemToMemSrc = memorySettings; return *this; }
+			Settings& setMemoryOrMemToMemDst(MemorySettings memorySettings) { _memoryOrMemToMemDst = memorySettings; return *this; }
 
 			// Операторы сравнения
 			bool operator==(const Settings& other) const {
@@ -105,6 +111,9 @@ namespace BasePeripheral {
 				return !(*this == other);
 			}
 		};
+
+		typedef uint8_t dma_data_t;  // Тип данных для номера пина
+		typedef std::function<void(dma_data_t*)> ExternalInterruptCallback_t;  // Тип функции обратного вызова для внешних прерываний
 
 		class BaseDma : public ControllerPeripheral {
 

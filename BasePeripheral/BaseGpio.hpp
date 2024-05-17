@@ -5,7 +5,7 @@
 
 namespace BasePeripheral {
 	namespace Gpio {
-		// Определение режимов работы порта GPIO
+		// Перечисление режимов работы GPIO
 		enum class Mode : uint32_t {
 			Input,             // Режим входа
 			Output,            // Режим выхода
@@ -13,20 +13,20 @@ namespace BasePeripheral {
 			Analog             // Аналоговый режим
 		};
 
-		// Определение настроек подтягивающих резисторов
+		// Перечисление настроек подтягивающих резисторов
 		enum class Pull : uint32_t {
 			NoPull,   // Без подтягивания
 			PullUp,   // Подтягивание к питанию
 			PullDown  // Подтягивание к земле
 		};
 
-		// Определение типов выходного сигнала
+		// Перечисление типов выходного сигнала
 		enum class OutputType : uint32_t {
 			PushPull,   // Тип "толкать-тянуть"
 			OpenDrain   // Открытый сток
 		};
 
-		// Определение скоростей выходного сигнала
+		// Перечисление скоростей выходного сигнала
 		enum class OutputSpeed : uint32_t {
 			Low,        // Низкая скорость
 			Medium,     // Средняя скорость
@@ -34,7 +34,7 @@ namespace BasePeripheral {
 			VeryHigh    // Очень высокая скорость
 		};
 
-		// Определение возможных ошибок в настройках GPIO
+		// Перечисление возможных ошибок в настройках GPIO
 		enum class Error {
 			None,
 			InitError,  // Ошибка инициализации
@@ -64,6 +64,11 @@ namespace BasePeripheral {
 				OutputSpeed outputSpeed = OutputSpeed::Low // значение по умолчанию для скорости выходного сигнала
 			) : _mode(mode), _pull(pull), _outputType(outputType), _outputSpeed(outputSpeed) {}
 
+			//Функции билдера
+			Settings& setMode(Mode mode) { _mode = mode; return *this; }
+			Settings& setPull(Pull pull) { _pull = pull; return *this; }
+			Settings& setOutputType(OutputType outputType) { _outputType = outputType; return *this; }
+			Settings& setOutputSpeed(OutputSpeed outputSpeed) { _outputSpeed = outputSpeed; return *this; }
 
 			// Операторы сравнения
 			bool operator==(const Settings& other) const {
@@ -76,14 +81,15 @@ namespace BasePeripheral {
 		};
 
 		typedef uint32_t pin_number_t;  // Тип данных для номера пина
-		typedef std::function<void(pin_number_t pin)> ExternalInterruptCallback_t;  // Тип функции обратного вызова для внешних прерываний
+		typedef std::function<void(pin_number_t)> ExternalInterruptCallback_t;  // Тип функции обратного вызова для внешних прерываний
 
 		template <uint32_t IOCount> // Максимальный номер пина
 		class BaseGpio : public ControllerPeripheral {
 		public:
+
 			static constexpr pin_number_t PinMaxNumber = IOCount;
 
-			virtual ~BaseGpio() {}
+			virtual ~BaseGpio() = default;
 
 			virtual bool isEnabled() const override {
 				return false;
@@ -144,6 +150,16 @@ namespace BasePeripheral {
 			// Возвращает текущие настройки указанного пина
 			virtual Settings getSettings(pin_number_t) const { return Settings(); };
 
+			// Устанавливает внешний обработчик прерываний
+			void setInterruptCallback(ExternalInterruptCallback_t callback) {
+				interruptCallback = std::move(callback);
+			}
+
+			// Удаляет внешний обработчик прерываний
+			void clearInterruptCallback() {
+				interruptCallback = nullptr;
+			}
+
 		protected:
 
 			// Возвращает битовую маску для указанного пина
@@ -187,6 +203,7 @@ namespace BasePeripheral {
 				return OutputSpeed();
 			};
 
+			//Внешний обработчик прерываний
 			ExternalInterruptCallback_t interruptCallback;
 
 			BaseGpio() {}

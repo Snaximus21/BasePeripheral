@@ -33,7 +33,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
+          "DockedWidth": 214,
           "SelectedChildIndex": 0,
           "Children": [
             {
@@ -44,7 +44,7 @@
               "RelativeDocumentMoniker": "BasePeripheral\\BaseDma.hpp",
               "ToolTip": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseDma.hpp",
               "RelativeToolTip": "BasePeripheral\\BaseDma.hpp",
-              "ViewState": "AQIAAHIAAAAAAAAAAAAAAAoAAAACAAAA",
+              "ViewState": "AQIAAF0AAAAAAAAAAAAAAHMAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-05-17T17:19:07.902Z",
               "EditorCaption": ""
@@ -59,8 +59,7 @@
               "RelativeToolTip": "BasePeripheral\\BaseAdc.hpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-17T16:39:12.459Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-17T16:39:12.459Z"
             },
             {
               "$type": "Document",
@@ -73,19 +72,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-05-17T16:38:37.442Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BaseGpio.hpp",
-              "DocumentMoniker": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseGpio.hpp",
-              "RelativeDocumentMoniker": "BasePeripheral\\BaseGpio.hpp",
-              "ToolTip": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseGpio.hpp",
-              "RelativeToolTip": "BasePeripheral\\BaseGpio.hpp",
-              "ViewState": "AQIAAEIAAAAAAAAAAAAAAEwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-17T16:38:15.587Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -110,6 +96,25 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-05-17T16:11:46.619Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 186,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BaseGpio.hpp",
+              "DocumentMoniker": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseGpio.hpp",
+              "RelativeDocumentMoniker": "BasePeripheral\\BaseGpio.hpp",
+              "ToolTip": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseGpio.hpp",
+              "RelativeToolTip": "BasePeripheral\\BaseGpio.hpp",
+              "ViewState": "AQIAAEUAAAAAAAAAAAAAAFEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-17T16:38:15.587Z",
+              "EditorCaption": ""
             }
           ]
         }
