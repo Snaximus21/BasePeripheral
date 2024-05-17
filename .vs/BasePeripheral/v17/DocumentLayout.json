@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Workspace\\CPP\\BasePeripheral\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{03F52B47-A75F-4B27-9048-10E60F16CAC1}|BasePeripheral\\BasePeripheral.vcxproj|D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseDma.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{03F52B47-A75F-4B27-9048-10E60F16CAC1}|BasePeripheral\\BasePeripheral.vcxproj|solutionrelative:BasePeripheral\\BaseDma.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{03F52B47-A75F-4B27-9048-10E60F16CAC1}|BasePeripheral\\BasePeripheral.vcxproj|D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseGpio.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{03F52B47-A75F-4B27-9048-10E60F16CAC1}|BasePeripheral\\BasePeripheral.vcxproj|solutionrelative:BasePeripheral\\BaseGpio.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -30,24 +34,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "BaseDma.hpp",
+              "DocumentMoniker": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseDma.hpp",
+              "RelativeDocumentMoniker": "BasePeripheral\\BaseDma.hpp",
+              "ToolTip": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseDma.hpp",
+              "RelativeToolTip": "BasePeripheral\\BaseDma.hpp",
+              "ViewState": "AQIAAHIAAAAAAAAAAAAAAAoAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-17T17:19:07.902Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "BaseAdc.hpp",
               "DocumentMoniker": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseAdc.hpp",
               "RelativeDocumentMoniker": "BasePeripheral\\BaseAdc.hpp",
               "ToolTip": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseAdc.hpp",
               "RelativeToolTip": "BasePeripheral\\BaseAdc.hpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-05-17T16:39:12.459Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "SharedMacro.hpp",
               "DocumentMoniker": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\SharedMacro.hpp",
               "RelativeDocumentMoniker": "BasePeripheral\\SharedMacro.hpp",
@@ -55,25 +72,24 @@
               "RelativeToolTip": "BasePeripheral\\SharedMacro.hpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-17T16:38:37.442Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-17T16:38:37.442Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "BaseGpio.hpp",
               "DocumentMoniker": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseGpio.hpp",
               "RelativeDocumentMoniker": "BasePeripheral\\BaseGpio.hpp",
               "ToolTip": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseGpio.hpp",
               "RelativeToolTip": "BasePeripheral\\BaseGpio.hpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAYAAAA",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAAAEwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-05-17T16:38:15.587Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ControllerPeripheral.hpp",
               "DocumentMoniker": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\ControllerPeripheral.hpp",
               "RelativeDocumentMoniker": "BasePeripheral\\ControllerPeripheral.hpp",
@@ -81,12 +97,11 @@
               "RelativeToolTip": "BasePeripheral\\ControllerPeripheral.hpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-17T16:37:25.416Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-17T16:37:25.416Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "BasePeripheral.cpp",
               "DocumentMoniker": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BasePeripheral.cpp",
               "RelativeDocumentMoniker": "BasePeripheral\\BasePeripheral.cpp",
@@ -94,8 +109,7 @@
               "RelativeToolTip": "BasePeripheral\\BasePeripheral.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-05-17T16:11:46.619Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-17T16:11:46.619Z"
             }
           ]
         }

@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseAdc.hpp" />
+    <ClInclude Include="BaseDma.hpp" />
     <ClInclude Include="BaseGpio.hpp" />
     <ClInclude Include="ControllerPeripheral.hpp" />
     <ClInclude Include="SharedMacro.hpp" />
