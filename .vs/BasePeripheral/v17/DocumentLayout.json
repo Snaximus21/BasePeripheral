@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Workspace\\CPP\\BasePeripheral\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{03F52B47-A75F-4B27-9048-10E60F16CAC1}|BasePeripheral\\BasePeripheral.vcxproj|D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseGpio.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{03F52B47-A75F-4B27-9048-10E60F16CAC1}|BasePeripheral\\BasePeripheral.vcxproj|solutionrelative:BasePeripheral\\BaseGpio.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03F52B47-A75F-4B27-9048-10E60F16CAC1}|BasePeripheral\\BasePeripheral.vcxproj|D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseAdc.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{03F52B47-A75F-4B27-9048-10E60F16CAC1}|BasePeripheral\\BasePeripheral.vcxproj|solutionrelative:BasePeripheral\\BaseAdc.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03F52B47-A75F-4B27-9048-10E60F16CAC1}|BasePeripheral\\BasePeripheral.vcxproj|D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\SharedMacro.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{03F52B47-A75F-4B27-9048-10E60F16CAC1}|BasePeripheral\\BasePeripheral.vcxproj|solutionrelative:BasePeripheral\\SharedMacro.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03F52B47-A75F-4B27-9048-10E60F16CAC1}|BasePeripheral\\BasePeripheral.vcxproj|D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BasePeripheral.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{03F52B47-A75F-4B27-9048-10E60F16CAC1}|BasePeripheral\\BasePeripheral.vcxproj|solutionrelative:BasePeripheral\\BasePeripheral.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03F52B47-A75F-4B27-9048-10E60F16CAC1}|BasePeripheral\\BasePeripheral.vcxproj|D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\ControllerPeripheral.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{03F52B47-A75F-4B27-9048-10E60F16CAC1}|BasePeripheral\\BasePeripheral.vcxproj|solutionrelative:BasePeripheral\\ControllerPeripheral.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BaseAdc.hpp",
+              "DocumentMoniker": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseAdc.hpp",
+              "RelativeDocumentMoniker": "BasePeripheral\\BaseAdc.hpp",
+              "ToolTip": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseAdc.hpp",
+              "RelativeToolTip": "BasePeripheral\\BaseAdc.hpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-17T16:39:12.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SharedMacro.hpp",
+              "DocumentMoniker": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\SharedMacro.hpp",
+              "RelativeDocumentMoniker": "BasePeripheral\\SharedMacro.hpp",
+              "ToolTip": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\SharedMacro.hpp",
+              "RelativeToolTip": "BasePeripheral\\SharedMacro.hpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-17T16:38:37.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BaseGpio.hpp",
+              "DocumentMoniker": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseGpio.hpp",
+              "RelativeDocumentMoniker": "BasePeripheral\\BaseGpio.hpp",
+              "ToolTip": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BaseGpio.hpp",
+              "RelativeToolTip": "BasePeripheral\\BaseGpio.hpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-17T16:38:15.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ControllerPeripheral.hpp",
+              "DocumentMoniker": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\ControllerPeripheral.hpp",
+              "RelativeDocumentMoniker": "BasePeripheral\\ControllerPeripheral.hpp",
+              "ToolTip": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\ControllerPeripheral.hpp",
+              "RelativeToolTip": "BasePeripheral\\ControllerPeripheral.hpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-17T16:37:25.416Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BasePeripheral.cpp",
+              "DocumentMoniker": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BasePeripheral.cpp",
+              "RelativeDocumentMoniker": "BasePeripheral\\BasePeripheral.cpp",
+              "ToolTip": "D:\\Workspace\\CPP\\BasePeripheral\\BasePeripheral\\BasePeripheral.cpp",
+              "RelativeToolTip": "BasePeripheral\\BasePeripheral.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-17T16:11:46.619Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
