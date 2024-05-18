@@ -7,40 +7,51 @@ namespace BasePeripheral {
 	namespace Dma {
 
 		typedef uint32_t address_t;
+		typedef uint32_t channel_number_t;
 
+		// Перечисление для направления передачи данных
 		enum class Direction {
-			PeriphToMemory,
-			MemoryToPeriph,
-			MemoryToMemory
+			PeriphToMemory, // Передача данных от периферии к памяти
+			MemoryToPeriph, // Передача данных от памяти к периферии
+			MemoryToMemory  // Передача данных от памяти к памяти
 		};
 
+		// Перечисление для режима работы DMA
 		enum class Mode {
-			Normal,
-			Circular
+			Normal,   // Обычный режим передачи данных
+			Circular  // Циклический режим передачи данных
 		};
 
+		// Перечисление для режима инкрементации адресов
 		enum class IncrementMode {
-			NoIncrement,
-			Increment
+			NoIncrement, // Без инкрементации
+			Increment    // С инкрементацией
 		};
 
+		// Перечисление для выравнивания данных
 		enum class DataAlign {
-			Byte,
-			HalfWord,
-			Word
+			Byte,      // Выравнивание по байту
+			HalfWord,  // Выравнивание по полуслову (2 байта)
+			Word       // Выравнивание по слову (4 байта)
 		};
 
+		// Перечисление для приоритета DMA
 		enum class Priority {
-			Low,
-			Medium,
-			High,
-			VeryHigh
+			Low,      // Низкий приоритет
+			Medium,   // Средний приоритет
+			High,     // Высокий приоритет
+			VeryHigh  // Очень высокий приоритет
+		};
+
+		enum class Error : error_t {
+			ChannelDisabled,	 //Переферия DMA отключена
+			ChannelNumberError,  //Некорректный номер канала
 		};
 
 		typedef struct MemorySettings {
-			address_t _memAddr;
-			DataAlign _dataAlign;
-			IncrementMode _incMode;
+			address_t _memAddr;         // Адрес памяти
+			DataAlign _dataAlign;       // Выравнивание данных
+			IncrementMode _incMode;     // Режим инкрементации адресов
 
 			// Геттеры для получения настроек
 			address_t getAddr() const { return _memAddr; }
@@ -68,11 +79,11 @@ namespace BasePeripheral {
 		struct Settings
 		{
 		private:
-			Direction _direction;
-			Mode _mode;
-			Priority _priority;
-			MemorySettings _periphOrMemToMemSrc;
-			MemorySettings _memoryOrMemToMemDst;
+			Direction _direction;                  // Направление передачи данных
+			Mode _mode;                            // Режим работы DMA
+			Priority _priority;                    // Приоритет DMA
+			MemorySettings _periphOrMemToMemSrc;   // Настройки источника данных (периферия или память)
+			MemorySettings _memoryOrMemToMemDst;   // Настройки назначения данных (память)
 
 		public:
 			// Геттеры для получения настроек
@@ -112,13 +123,81 @@ namespace BasePeripheral {
 			}
 		};
 
-		typedef uint8_t dma_data_t;  // Тип данных для номера пина
-		typedef std::function<void(dma_data_t*)> ExternalInterruptCallback_t;  // Тип функции обратного вызова для внешних прерываний
-
+		template <uint32_t ChannelsCount> // Максимальный номер пина
 		class BaseDma : public ControllerPeripheral {
+			static constexpr channel_number_t ChannelMaxNumber = ChannelsCount - 1;
 
+			virtual ~BaseDma() = default;
 
+			virtual bool isEnabled() const override {
+				return false;
+			}
 
+			virtual void init() override {
+				enableClock();
+			}
+
+			//Проверка валидности входных данных и настройка канала
+			bool initChannel(channel_number_t channel, const Settings& settings = Settings()) {
+				if (!isEnabled) {
+					onError(Error::ChannelDisabled);
+					return false;
+				}
+				if (channel > ChannelMaxNumber) {
+					onError(Error::ChannelNumberError);
+					return false;
+				}
+				return applySettings(channel, settings);
+			}
+
+			//Проверка валидности входных данных и установка направления передачи
+			void setDirection(channel_number_t channel, Direction direction) {
+				if (channel > ChannelMaxNumber)
+					onError(Error::ChannelNumberError);
+				
+				onSetDirection(channel, direction);
+			}
+
+			//Проверка валидности входных данных и установка режима передачи
+			void setMode(channel_number_t channel, Mode mode) {
+				if (channel > ChannelMaxNumber)
+					onError(Error::ChannelNumberError);
+				
+				onSetMode(channel, mode);
+			}
+
+			//Проверка валидности входных данных и установка приоритета работы канала
+			void setPriority(channel_number_t channel, Priority priority) {
+				if (channel > ChannelMaxNumber)
+					onError(Error::ChannelNumberError);
+	
+				onSetPriority(channel, priority);
+			}
+
+			//Проверка валидности входных данных и установка настроек памяти
+			void setMemorySettings(channel_number_t channel, const MemorySettings& src, const MemorySettings& dst) {
+				if (channel > ChannelMaxNumber)
+					onError(Error::ChannelNumberError);
+
+				onSetMemorySettings(channel, src, dst);
+			}
+
+		protected:
+
+			//Настройка канала
+			virtual bool onSetSettings(channel_number_t channel, const Settings& settings) = 0;
+
+			//Установка направления передачи
+			virtual void onSetDirection(channel_number_t channel, Direction direction) = 0;
+
+			//Установка режима передачи
+			virtual void onSetMode(channel_number_t channel, Mode mode) = 0;
+
+			//Установка приоритета работы канала
+			virtual void onSetPriority(channel_number_t channel, Priority priority) = 0;
+
+			//Установка настроек памяти
+			virtual void onSetMemorySettings(channel_number_t channel, const MemorySettings& src, const MemorySettings& dst) = 0;
 		};
 	}
 }
