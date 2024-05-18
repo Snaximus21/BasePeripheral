@@ -9,63 +9,84 @@ namespace BasePeripheral {
 		typedef uint32_t address_t;
 		typedef uint32_t channel_number_t;
 
-		// Перечисление для направления передачи данных
+		// РџРµСЂРµС‡РёСЃР»РµРЅРёРµ РґР»СЏ РЅР°РїСЂР°РІР»РµРЅРёСЏ РїРµСЂРµРґР°С‡Рё РґР°РЅРЅС‹С…
 		enum class Direction {
-			PeriphToMemory, // Передача данных от периферии к памяти
-			MemoryToPeriph, // Передача данных от памяти к периферии
-			MemoryToMemory  // Передача данных от памяти к памяти
+			PeriphToMemory, // РџРµСЂРµРґР°С‡Р° РґР°РЅРЅС‹С… РѕС‚ РїРµСЂРёС„РµСЂРёРё Рє РїР°РјСЏС‚Рё
+			MemoryToPeriph, // РџРµСЂРµРґР°С‡Р° РґР°РЅРЅС‹С… РѕС‚ РїР°РјСЏС‚Рё Рє РїРµСЂРёС„РµСЂРёРё
+			MemoryToMemory  // РџРµСЂРµРґР°С‡Р° РґР°РЅРЅС‹С… РѕС‚ РїР°РјСЏС‚Рё Рє РїР°РјСЏС‚Рё
 		};
 
-		// Перечисление для режима работы DMA
+		// РџРµСЂРµС‡РёСЃР»РµРЅРёРµ РґР»СЏ СЂРµР¶РёРјР° СЂР°Р±РѕС‚С‹ DMA
 		enum class Mode {
-			Normal,   // Обычный режим передачи данных
-			Circular  // Циклический режим передачи данных
+			Normal,   // РћР±С‹С‡РЅС‹Р№ СЂРµР¶РёРј РїРµСЂРµРґР°С‡Рё РґР°РЅРЅС‹С…
+			Circular  // Р¦РёРєР»РёС‡РµСЃРєРёР№ СЂРµР¶РёРј РїРµСЂРµРґР°С‡Рё РґР°РЅРЅС‹С…
 		};
 
-		// Перечисление для режима инкрементации адресов
+		// РџРµСЂРµС‡РёСЃР»РµРЅРёРµ РґР»СЏ СЂРµР¶РёРјР° РёРЅРєСЂРµРјРµРЅС‚Р°С†РёРё Р°РґСЂРµСЃРѕРІ
 		enum class IncrementMode {
-			NoIncrement, // Без инкрементации
-			Increment    // С инкрементацией
+			NoIncrement, // Р‘РµР· РёРЅРєСЂРµРјРµРЅС‚Р°С†РёРё
+			Increment    // РЎ РёРЅРєСЂРµРјРµРЅС‚Р°С†РёРµР№
 		};
 
-		// Перечисление для выравнивания данных
+		// РџРµСЂРµС‡РёСЃР»РµРЅРёРµ РґР»СЏ РІС‹СЂР°РІРЅРёРІР°РЅРёСЏ РґР°РЅРЅС‹С…
 		enum class DataAlign {
-			Byte,      // Выравнивание по байту
-			HalfWord,  // Выравнивание по полуслову (2 байта)
-			Word       // Выравнивание по слову (4 байта)
+			Byte,      // Р’С‹СЂР°РІРЅРёРІР°РЅРёРµ РїРѕ Р±Р°Р№С‚Сѓ
+			HalfWord,  // Р’С‹СЂР°РІРЅРёРІР°РЅРёРµ РїРѕ РїРѕР»СѓСЃР»РѕРІСѓ (2 Р±Р°Р№С‚Р°)
+			Word       // Р’С‹СЂР°РІРЅРёРІР°РЅРёРµ РїРѕ СЃР»РѕРІСѓ (4 Р±Р°Р№С‚Р°)
 		};
 
-		// Перечисление для приоритета DMA
+		// РџРµСЂРµС‡РёСЃР»РµРЅРёРµ РґР»СЏ РїСЂРёРѕСЂРёС‚РµС‚Р° DMA
 		enum class Priority {
-			Low,      // Низкий приоритет
-			Medium,   // Средний приоритет
-			High,     // Высокий приоритет
-			VeryHigh  // Очень высокий приоритет
+			Low,      // РќРёР·РєРёР№ РїСЂРёРѕСЂРёС‚РµС‚
+			Medium,   // РЎСЂРµРґРЅРёР№ РїСЂРёРѕСЂРёС‚РµС‚
+			High,     // Р’С‹СЃРѕРєРёР№ РїСЂРёРѕСЂРёС‚РµС‚
+			VeryHigh  // РћС‡РµРЅСЊ РІС‹СЃРѕРєРёР№ РїСЂРёРѕСЂРёС‚РµС‚
 		};
 
+		// РџРµСЂРµС‡РёСЃР»РµРЅРёРµ РґР»СЏ РѕС€РёР±РѕРє DMA
 		enum class Error : error_t {
-			ChannelDisabled,	 //Переферия DMA отключена
-			ChannelNumberError,  //Некорректный номер канала
+			ChannelDisabled,    // РџРµСЂРµС„РµСЂРёСЏ DMA РѕС‚РєР»СЋС‡РµРЅР°
+			ChannelNumberError  // РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РЅРѕРјРµСЂ РєР°РЅР°Р»Р°
 		};
 
-		typedef struct MemorySettings {
-			address_t _memAddr;         // Адрес памяти
-			DataAlign _dataAlign;       // Выравнивание данных
-			IncrementMode _incMode;     // Режим инкрементации адресов
+		// РџРµСЂРµС‡РёСЃР»РµРЅРёРµ РґР»СЏ РїСЂРёРѕСЂРёС‚РµС‚Р° DMA
+		enum class Priority {
+			Low,      // РќРёР·РєРёР№ РїСЂРёРѕСЂРёС‚РµС‚
+			Medium,   // РЎСЂРµРґРЅРёР№ РїСЂРёРѕСЂРёС‚РµС‚
+			High,     // Р’С‹СЃРѕРєРёР№ РїСЂРёРѕСЂРёС‚РµС‚
+			VeryHigh  // РћС‡РµРЅСЊ РІС‹СЃРѕРєРёР№ РїСЂРёРѕСЂРёС‚РµС‚
+		};
 
-			// Геттеры для получения настроек
+		// РџРµСЂРµС‡РёСЃР»РµРЅРёРµ РґР»СЏ РѕС€РёР±РѕРє DMA
+		enum class Error : error_t {
+			ChannelDisabled,    // РџРµСЂРµС„РµСЂРёСЏ DMA РѕС‚РєР»СЋС‡РµРЅР°
+			ChannelNumberError  // РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РЅРѕРјРµСЂ РєР°РЅР°Р»Р°
+		};
+
+		// РЎС‚СЂСѓРєС‚СѓСЂР° РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РЅР°СЃС‚СЂРѕРµРє РїР°РјСЏС‚Рё
+		struct MemorySettings {
+			address_t _memAddr;         // РђРґСЂРµСЃ РїР°РјСЏС‚Рё
+			DataAlign _dataAlign;       // Р’С‹СЂР°РІРЅРёРІР°РЅРёРµ РґР°РЅРЅС‹С…
+			IncrementMode _incMode;     // Р РµР¶РёРј РёРЅРєСЂРµРјРµРЅС‚Р°С†РёРё Р°РґСЂРµСЃРѕРІ
+
+			// Р“РµС‚С‚РµСЂС‹ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РЅР°СЃС‚СЂРѕРµРє
 			address_t getAddr() const { return _memAddr; }
 			DataAlign getDataAlign() const { return _dataAlign; }
-			IncrementMode getPriority() const { return _incMode; }
+			IncrementMode getIncMode() const { return _incMode; }
 
-			// Конструктор с параметрами по умолчанию
+			// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 			MemorySettings(
 				address_t memAddr = 0,
-				DataAlign dataAlign = DataAlign::Byte, // значение по умолчанию для режима
+				DataAlign dataAlign = DataAlign::Byte, // Р—РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РґР»СЏ СЂРµР¶РёРјР°
 				IncrementMode incMode = IncrementMode::NoIncrement
 			) : _memAddr(memAddr), _dataAlign(dataAlign), _incMode(incMode) {}
 
-			// Операторы сравнения
+			// Р¤СѓРЅРєС†РёРё Р±РёР»РґРµСЂР° РґР»СЏ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
+			MemorySettings& setAddr(address_t memAddr) { _memAddr = memAddr; return *this; }
+			MemorySettings& setDataAlign(DataAlign dataAlign) { _dataAlign = dataAlign; return *this; }
+			MemorySettings& setIncMode(IncrementMode incMode) { _incMode = incMode; return *this; }
+
+			// РћРїРµСЂР°С‚РѕСЂС‹ СЃСЂР°РІРЅРµРЅРёСЏ
 			bool operator==(const MemorySettings& other) const {
 				return _memAddr == other._memAddr && _dataAlign == other._dataAlign && _incMode == other._incMode;
 			}
@@ -75,25 +96,24 @@ namespace BasePeripheral {
 			}
 		};
 
-		// Структура для хранения настроек DMA
-		struct Settings
-		{
+		// РЎС‚СЂСѓРєС‚СѓСЂР° РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РѕР±С‰РёС… РЅР°СЃС‚СЂРѕРµРє DMA
+		struct Settings {
 		private:
-			Direction _direction;                  // Направление передачи данных
-			Mode _mode;                            // Режим работы DMA
-			Priority _priority;                    // Приоритет DMA
-			MemorySettings _periphOrMemToMemSrc;   // Настройки источника данных (периферия или память)
-			MemorySettings _memoryOrMemToMemDst;   // Настройки назначения данных (память)
+			Direction _direction;                  // РќР°РїСЂР°РІР»РµРЅРёРµ РїРµСЂРµРґР°С‡Рё РґР°РЅРЅС‹С…
+			Mode _mode;                            // Р РµР¶РёРј СЂР°Р±РѕС‚С‹ DMA
+			Priority _priority;                    // РџСЂРёРѕСЂРёС‚РµС‚ DMA
+			MemorySettings _periphOrMemToMemSrc;   // РќР°СЃС‚СЂРѕР№РєРё РёСЃС‚РѕС‡РЅРёРєР° РґР°РЅРЅС‹С… (РїРµСЂРёС„РµСЂРёСЏ РёР»Рё РїР°РјСЏС‚СЊ)
+			MemorySettings _memoryOrMemToMemDst;   // РќР°СЃС‚СЂРѕР№РєРё РЅР°Р·РЅР°С‡РµРЅРёСЏ РґР°РЅРЅС‹С… (РїР°РјСЏС‚СЊ)
 
 		public:
-			// Геттеры для получения настроек
+			// Р“РµС‚С‚РµСЂС‹ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РЅР°СЃС‚СЂРѕРµРє
 			Direction getDirection() const { return _direction; }
 			Mode getMode() const { return _mode; }
 			Priority getPriority() const { return _priority; }
 			MemorySettings getPeriphOrMemToMemSrc() const { return _periphOrMemToMemSrc; }
 			MemorySettings getMemoryOrMemToMemDst() const { return _memoryOrMemToMemDst; }
 
-			// Конструктор с параметрами по умолчанию
+			// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 			Settings(
 				Direction direction = Direction::PeriphToMemory,
 				Mode mode = Mode::Normal,
@@ -102,19 +122,19 @@ namespace BasePeripheral {
 				MemorySettings memoryOrMemToMemDst = MemorySettings()
 			) : _direction(direction), _mode(mode), _priority(priority), _periphOrMemToMemSrc(periphOrMemToMemSrc), _memoryOrMemToMemDst(memoryOrMemToMemDst) {}
 
-			//Функции билдера
+			// Р¤СѓРЅРєС†РёРё Р±РёР»РґРµСЂР° РґР»СЏ РЅР°СЃС‚СЂРѕР№РєРё РїР°СЂР°РјРµС‚СЂРѕРІ
 			Settings& setDirection(Direction direction) { _direction = direction; return *this; }
 			Settings& setMode(Mode mode) { _mode = mode; return *this; }
 			Settings& setPriority(Priority priority) { _priority = priority; return *this; }
 			Settings& setPeriphOrMemToMemSrc(MemorySettings memorySettings) { _periphOrMemToMemSrc = memorySettings; return *this; }
 			Settings& setMemoryOrMemToMemDst(MemorySettings memorySettings) { _memoryOrMemToMemDst = memorySettings; return *this; }
 
-			// Операторы сравнения
+			// РћРїРµСЂР°С‚РѕСЂС‹ СЃСЂР°РІРЅРµРЅРёСЏ
 			bool operator==(const Settings& other) const {
-				return _direction == other._direction && 
-					_mode == other._mode && 
-					_priority == other._priority && 
-					_periphOrMemToMemSrc == other._periphOrMemToMemSrc && 
+				return _direction == other._direction &&
+					_mode == other._mode &&
+					_priority == other._priority &&
+					_periphOrMemToMemSrc == other._periphOrMemToMemSrc &&
 					_memoryOrMemToMemDst == other._memoryOrMemToMemDst;
 			}
 
@@ -123,81 +143,94 @@ namespace BasePeripheral {
 			}
 		};
 
-		template <uint32_t ChannelsCount> // Максимальный номер пина
+		template <uint32_t ChannelsCount> // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		class BaseDma : public ControllerPeripheral {
+		public:
 			static constexpr channel_number_t ChannelMaxNumber = ChannelsCount - 1;
 
 			virtual ~BaseDma() = default;
 
-			virtual bool isEnabled() const override {
-				return false;
-			}
-
+			// РњРµС‚РѕРґ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РєРѕРЅС‚СЂРѕР»Р»РµСЂР° DMA
 			virtual void init() override {
-				enableClock();
+				onEnableClock(); // Р’РєР»СЋС‡РµРЅРёРµ С‚Р°РєС‚РёСЂРѕРІР°РЅРёСЏ РєРѕРЅС‚СЂРѕР»Р»РµСЂР° DMA
 			}
 
-			//Проверка валидности входных данных и настройка канала
+			// РњРµС‚РѕРґ РґРµРёРЅРёС†РёР°Р»РёР·Р°С†РёРё РєРѕРЅС‚СЂРѕР»Р»РµСЂР° DMA
+			virtual void deInit() override {
+				onDisableClock(); // РћС‚РєР»СЋС‡РµРЅРёРµ С‚Р°РєС‚РёСЂРѕРІР°РЅРёСЏ РєРѕРЅС‚СЂРѕР»Р»РµСЂР° DMA
+			}
+
+			// РњРµС‚РѕРґ РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РєР°РЅР°Р»Р° СЃ РїСЂРѕРІРµСЂРєРѕР№ РІР°Р»РёРґРЅРѕСЃС‚Рё РІС…РѕРґРЅС‹С… РґР°РЅРЅС‹С…
 			bool initChannel(channel_number_t channel, const Settings& settings = Settings()) {
-				if (!isEnabled) {
-					onError(Error::ChannelDisabled);
+				if (!isEnabled()) {
+					onError(ErrorEnum::ChannelDisabled); // РћР±СЂР°Р±РѕС‚РєР° РѕС€РёР±РєРё: РєРѕРЅС‚СЂРѕР»Р»РµСЂ DMA РѕС‚РєР»СЋС‡РµРЅ
 					return false;
 				}
 				if (channel > ChannelMaxNumber) {
-					onError(Error::ChannelNumberError);
+					onError(ErrorEnum::ChannelNumberError); // РћР±СЂР°Р±РѕС‚РєР° РѕС€РёР±РєРё: РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РЅРѕРјРµСЂ РєР°РЅР°Р»Р°
 					return false;
 				}
-				return applySettings(channel, settings);
+				return applySettings(channel, settings); // РџСЂРёРјРµРЅРµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє Рє РєР°РЅР°Р»Сѓ
 			}
 
-			//Проверка валидности входных данных и установка направления передачи
+			// РњРµС‚РѕРґ РґР»СЏ СѓСЃС‚Р°РЅРѕРІРєРё РЅР°РїСЂР°РІР»РµРЅРёСЏ РїРµСЂРµРґР°С‡Рё РґР°РЅРЅС‹С… СЃ РїСЂРѕРІРµСЂРєРѕР№ РІР°Р»РёРґРЅРѕСЃС‚Рё РІС…РѕРґРЅС‹С… РґР°РЅРЅС‹С…
 			void setDirection(channel_number_t channel, Direction direction) {
-				if (channel > ChannelMaxNumber)
-					onError(Error::ChannelNumberError);
-				
-				onSetDirection(channel, direction);
+				if (channel > ChannelMaxNumber) {
+					onError(ErrorEnum::ChannelNumberError); // РћР±СЂР°Р±РѕС‚РєР° РѕС€РёР±РєРё: РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РЅРѕРјРµСЂ РєР°РЅР°Р»Р°
+					return;
+				}
+				onSetDirection(channel, direction); // РЈСЃС‚Р°РЅРѕРІРєР° РЅР°РїСЂР°РІР»РµРЅРёСЏ РїРµСЂРµРґР°С‡Рё РґР°РЅРЅС‹С…
 			}
 
-			//Проверка валидности входных данных и установка режима передачи
+			// РњРµС‚РѕРґ РґР»СЏ СѓСЃС‚Р°РЅРѕРІРєРё СЂРµР¶РёРјР° РїРµСЂРµРґР°С‡Рё РґР°РЅРЅС‹С… СЃ РїСЂРѕРІРµСЂРєРѕР№ РІР°Р»РёРґРЅРѕСЃС‚Рё РІС…РѕРґРЅС‹С… РґР°РЅРЅС‹С…
 			void setMode(channel_number_t channel, Mode mode) {
-				if (channel > ChannelMaxNumber)
-					onError(Error::ChannelNumberError);
-				
-				onSetMode(channel, mode);
+				if (channel > ChannelMaxNumber) {
+					onError(ErrorEnum::ChannelNumberError); // РћР±СЂР°Р±РѕС‚РєР° РѕС€РёР±РєРё: РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РЅРѕРјРµСЂ РєР°РЅР°Р»Р°
+					return;
+				}
+				onSetMode(channel, mode); // РЈСЃС‚Р°РЅРѕРІРєР° СЂРµР¶РёРјР° РїРµСЂРµРґР°С‡Рё РґР°РЅРЅС‹С…
 			}
 
-			//Проверка валидности входных данных и установка приоритета работы канала
+			// РњРµС‚РѕРґ РґР»СЏ СѓСЃС‚Р°РЅРѕРІРєРё РїСЂРёРѕСЂРёС‚РµС‚Р° СЂР°Р±РѕС‚С‹ РєР°РЅР°Р»Р° СЃ РїСЂРѕРІРµСЂРєРѕР№ РІР°Р»РёРґРЅРѕСЃС‚Рё РІС…РѕРґРЅС‹С… РґР°РЅРЅС‹С…
 			void setPriority(channel_number_t channel, Priority priority) {
-				if (channel > ChannelMaxNumber)
-					onError(Error::ChannelNumberError);
-	
-				onSetPriority(channel, priority);
+				if (channel > ChannelMaxNumber) {
+					onError(ErrorEnum::ChannelNumberError); // РћР±СЂР°Р±РѕС‚РєР° РѕС€РёР±РєРё: РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РЅРѕРјРµСЂ РєР°РЅР°Р»Р°
+					return;
+				}
+				onSetPriority(channel, priority); // РЈСЃС‚Р°РЅРѕРІРєР° РїСЂРёРѕСЂРёС‚РµС‚Р° СЂР°Р±РѕС‚С‹ РєР°РЅР°Р»Р°
 			}
 
-			//Проверка валидности входных данных и установка настроек памяти
+			// РњРµС‚РѕРґ РґР»СЏ СѓСЃС‚Р°РЅРѕРІРєРё РЅР°СЃС‚СЂРѕРµРє РїР°РјСЏС‚Рё СЃ РїСЂРѕРІРµСЂРєРѕР№ РІР°Р»РёРґРЅРѕСЃС‚Рё РІС…РѕРґРЅС‹С… РґР°РЅРЅС‹С…
 			void setMemorySettings(channel_number_t channel, const MemorySettings& src, const MemorySettings& dst) {
-				if (channel > ChannelMaxNumber)
-					onError(Error::ChannelNumberError);
-
-				onSetMemorySettings(channel, src, dst);
+				if (channel > ChannelMaxNumber) {
+					onError(ErrorEnum::ChannelNumberError); // РћР±СЂР°Р±РѕС‚РєР° РѕС€РёР±РєРё: РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РЅРѕРјРµСЂ РєР°РЅР°Р»Р°
+					return;
+				}
+				onSetMemorySettings(channel, src, dst); // РЈСЃС‚Р°РЅРѕРІРєР° РЅР°СЃС‚СЂРѕРµРє РїР°РјСЏС‚Рё
 			}
 
 		protected:
 
-			//Настройка канала
+			//Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ СѓСЃС‚Р°РЅРѕРІРєРё РЅР°СЃС‚СЂРѕРµРє РєР°РЅР°Р»Р° DMA (РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂРµР°Р»РёР·РѕРІР°РЅ РІ РЅР°СЃР»РµРґРЅРёРєРµ)
 			virtual bool onSetSettings(channel_number_t channel, const Settings& settings) = 0;
 
-			//Установка направления передачи
+			//Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ СѓСЃС‚Р°РЅРѕРІРєРё РЅР°РїСЂР°РІР»РµРЅРёСЏ РїРµСЂРµРґР°С‡Рё РєР°РЅР°Р»Р° DMA (РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂРµР°Р»РёР·РѕРІР°РЅ РІ РЅР°СЃР»РµРґРЅРёРєРµ)
 			virtual void onSetDirection(channel_number_t channel, Direction direction) = 0;
 
-			//Установка режима передачи
+			//Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ СѓСЃС‚Р°РЅРѕРІРєРё СЂРµР¶РёРјР° РїРµСЂРµРґР°С‡Рё РєР°РЅР°Р»Р° DMA (РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂРµР°Р»РёР·РѕРІР°РЅ РІ РЅР°СЃР»РµРґРЅРёРєРµ)
 			virtual void onSetMode(channel_number_t channel, Mode mode) = 0;
 
-			//Установка приоритета работы канала
+			//Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ СѓСЃС‚Р°РЅРѕРІРєРё РїСЂРёРѕСЂРёС‚РµС‚Р° РїРµСЂРµРґР°С‡Рё РєР°РЅР°Р»Р° DMA (РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂРµР°Р»РёР·РѕРІР°РЅ РІ РЅР°СЃР»РµРґРЅРёРєРµ)
 			virtual void onSetPriority(channel_number_t channel, Priority priority) = 0;
 
-			//Установка настроек памяти
+			//Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ СѓСЃС‚Р°РЅРѕРІРєРё РЅР°СЃС‚СЂРѕРµРє РїР°РјСЏС‚Рё РєР°РЅР°Р»Р° DMA (РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂРµР°Р»РёР·РѕРІР°РЅ РІ РЅР°СЃР»РµРґРЅРёРєРµ)
 			virtual void onSetMemorySettings(channel_number_t channel, const MemorySettings& src, const MemorySettings& dst) = 0;
+
+			//Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ РІРєР»СЋС‡РµРЅРёСЏ РїРµСЂРµРґР°С‡Рё РґР°РЅРЅС‹С… РєР°РЅР°Р»Р° DMA (РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂРµР°Р»РёР·РѕРІР°РЅ РІ РЅР°СЃР»РµРґРЅРёРєРµ)
+			virtual void onEnableChannel(channel_number_t channel) = 0;
+
+			//Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ РІС‹РєР»СЋС‡РµРЅРёСЏ РїРµСЂРµРґР°С‡Рё РґР°РЅРЅС‹С… РєР°РЅР°Р»Р° DMA (РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂРµР°Р»РёР·РѕРІР°РЅ РІ РЅР°СЃР»РµРґРЅРёРєРµ)
+			virtual void onDisableChannel(channel_number_t channel) = 0;
 		};
 	}
 }

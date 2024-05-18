@@ -4,209 +4,209 @@
 #include "SharedMacro.hpp"
 
 namespace BasePeripheral {
-	namespace Gpio {
-		// Перечисление режимов работы GPIO
-		enum class Mode : uint32_t {
-			Input,             // Режим входа
-			Output,            // Режим выхода
-			AlternateFunction, // Режим альтернативной функции
-			Analog             // Аналоговый режим
-		};
+    namespace Gpio {
+        // РџРµСЂРµС‡РёСЃР»РµРЅРёРµ СЂРµР¶РёРјРѕРІ СЂР°Р±РѕС‚С‹ GPIO
+        enum class Mode : uint32_t {
+            Input,             // Р РµР¶РёРј РІС…РѕРґР°
+            Output,            // Р РµР¶РёРј РІС‹С…РѕРґР°
+            AlternateFunction, // Р РµР¶РёРј Р°Р»СЊС‚РµСЂРЅР°С‚РёРІРЅРѕР№ С„СѓРЅРєС†РёРё
+            Analog             // РђРЅР°Р»РѕРіРѕРІС‹Р№ СЂРµР¶РёРј
+        };
 
-		// Перечисление настроек подтягивающих резисторов
-		enum class Pull : uint32_t {
-			NoPull,   // Без подтягивания
-			PullUp,   // Подтягивание к питанию
-			PullDown  // Подтягивание к земле
-		};
+        // РџРµСЂРµС‡РёСЃР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРѕРґС‚СЏРіРёРІР°СЋС‰РёС… СЂРµР·РёСЃС‚РѕСЂРѕРІ
+        enum class Pull : uint32_t {
+            NoPull,   // Р‘РµР· РїРѕРґС‚СЏРіРёРІР°РЅРёСЏ
+            PullUp,   // РџРѕРґС‚СЏРіРёРІР°РЅРёРµ Рє РїРёС‚Р°РЅРёСЋ
+            PullDown  // РџРѕРґС‚СЏРіРёРІР°РЅРёРµ Рє Р·РµРјР»Рµ
+        };
 
-		// Перечисление типов выходного сигнала
-		enum class OutputType : uint32_t {
-			PushPull,   // Тип "толкать-тянуть"
-			OpenDrain   // Открытый сток
-		};
+        // РџРµСЂРµС‡РёСЃР»РµРЅРёРµ С‚РёРїРѕРІ РІС‹С…РѕРґРЅРѕРіРѕ СЃРёРіРЅР°Р»Р°
+        enum class OutputType : uint32_t {
+            PushPull,   // РўРёРї "С‚РѕР»РєР°С‚СЊ-С‚СЏРЅСѓС‚СЊ"
+            OpenDrain   // РћС‚РєСЂС‹С‚С‹Р№ СЃС‚РѕРє
+        };
 
-		// Перечисление скоростей выходного сигнала
-		enum class OutputSpeed : uint32_t {
-			Low,        // Низкая скорость
-			Medium,     // Средняя скорость
-			High,       // Высокая скорость
-			VeryHigh    // Очень высокая скорость
-		};
+        // РџРµСЂРµС‡РёСЃР»РµРЅРёРµ СЃРєРѕСЂРѕСЃС‚РµР№ РІС‹С…РѕРґРЅРѕРіРѕ СЃРёРіРЅР°Р»Р°
+        enum class OutputSpeed : uint32_t {
+            Low,        // РќРёР·РєР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ
+            Medium,     // РЎСЂРµРґРЅСЏСЏ СЃРєРѕСЂРѕСЃС‚СЊ
+            High,       // Р’С‹СЃРѕРєР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ
+            VeryHigh    // РћС‡РµРЅСЊ РІС‹СЃРѕРєР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ
+        };
 
-		// Перечисление возможных ошибок в настройках GPIO
-		enum class Error {
-			None,
-			InitError,  // Ошибка инициализации
-		};
+        // РџРµСЂРµС‡РёСЃР»РµРЅРёРµ РІРѕР·РјРѕР¶РЅС‹С… РѕС€РёР±РѕРє РІ РЅР°СЃС‚СЂРѕР№РєР°С… GPIO
+        enum class Error {
+            None,        // РћС€РёР±РѕРє РЅРµС‚
+            InitError,   // РћС€РёР±РєР° РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
+        };
 
-		// Структура для хранения настроек GPIO
-		struct Settings
-		{
-		private:
-			Mode _mode;				// Режим порта
-			Pull _pull;             // Настройка подтягивающего резистора
-			OutputType _outputType; // Тип выходного сигнала
-			OutputSpeed _outputSpeed; // Скорость выходного сигнала
+        // РЎС‚СЂСѓРєС‚СѓСЂР° РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РЅР°СЃС‚СЂРѕРµРє GPIO
+        struct Settings {
+        private:
+            Mode _mode;               // Р РµР¶РёРј РїРѕСЂС‚Р°
+            Pull _pull;               // РќР°СЃС‚СЂРѕР№РєР° РїРѕРґС‚СЏРіРёРІР°СЋС‰РµРіРѕ СЂРµР·РёСЃС‚РѕСЂР°
+            OutputType _outputType;   // РўРёРї РІС‹С…РѕРґРЅРѕРіРѕ СЃРёРіРЅР°Р»Р°
+            OutputSpeed _outputSpeed; // РЎРєРѕСЂРѕСЃС‚СЊ РІС‹С…РѕРґРЅРѕРіРѕ СЃРёРіРЅР°Р»Р°
 
-		public:
-			// Геттеры для получения настроек
-			Mode getMode() const { return _mode; }
-			Pull getPull() const { return _pull; }
-			OutputType getOutputType() const { return _outputType; }
-			OutputSpeed getOutputSpeed() const { return _outputSpeed; }
+        public:
+            // Р“РµС‚С‚РµСЂС‹ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РЅР°СЃС‚СЂРѕРµРє
+            Mode getMode() const { return _mode; }
+            Pull getPull() const { return _pull; }
+            OutputType getOutputType() const { return _outputType; }
+            OutputSpeed getOutputSpeed() const { return _outputSpeed; }
 
-			// Конструктор с параметрами по умолчанию
-			Settings(
-				Mode mode = Mode::Output, // значение по умолчанию для режима
-				Pull pull = Pull::NoPull, // значение по умолчанию для подтягивающего резистора
-				OutputType outputType = OutputType::PushPull, // значение по умолчанию для типа выходного сигнала
-				OutputSpeed outputSpeed = OutputSpeed::Low // значение по умолчанию для скорости выходного сигнала
-			) : _mode(mode), _pull(pull), _outputType(outputType), _outputSpeed(outputSpeed) {}
+            // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+            Settings(
+                Mode mode = Mode::Output,                   // Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РґР»СЏ СЂРµР¶РёРјР°
+                Pull pull = Pull::NoPull,                   // Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РґР»СЏ РїРѕРґС‚СЏРіРёРІР°СЋС‰РµРіРѕ СЂРµР·РёСЃС‚РѕСЂР°
+                OutputType outputType = OutputType::PushPull, // Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РґР»СЏ С‚РёРїР° РІС‹С…РѕРґРЅРѕРіРѕ СЃРёРіРЅР°Р»Р°
+                OutputSpeed outputSpeed = OutputSpeed::Low  // Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РґР»СЏ СЃРєРѕСЂРѕСЃС‚Рё РІС‹С…РѕРґРЅРѕРіРѕ СЃРёРіРЅР°Р»Р°
+            ) : _mode(mode), _pull(pull), _outputType(outputType), _outputSpeed(outputSpeed) {}
 
-			//Функции билдера
-			Settings& setMode(Mode mode) { _mode = mode; return *this; }
-			Settings& setPull(Pull pull) { _pull = pull; return *this; }
-			Settings& setOutputType(OutputType outputType) { _outputType = outputType; return *this; }
-			Settings& setOutputSpeed(OutputSpeed outputSpeed) { _outputSpeed = outputSpeed; return *this; }
+            // Р¤СѓРЅРєС†РёРё Р±РёР»РґРµСЂР°
+            Settings& setMode(Mode mode) { _mode = mode; return *this; }
+            Settings& setPull(Pull pull) { _pull = pull; return *this; }
+            Settings& setOutputType(OutputType outputType) { _outputType = outputType; return *this; }
+            Settings& setOutputSpeed(OutputSpeed outputSpeed) { _outputSpeed = outputSpeed; return *this; }
 
-			// Операторы сравнения
-			bool operator==(const Settings& other) const {
-				return _mode == other._mode && _pull == other._pull && _outputType == other._outputType && _outputSpeed == other._outputSpeed;
-			}
+            // РћРїРµСЂР°С‚РѕСЂС‹ СЃСЂР°РІРЅРµРЅРёСЏ
+            bool operator==(const Settings& other) const {
+                return _mode == other._mode && _pull == other._pull && _outputType == other._outputType && _outputSpeed == other._outputSpeed;
+            }
 
-			bool operator!=(const Settings& other) const {
-				return !(*this == other);
-			}
-		};
+            bool operator!=(const Settings& other) const {
+                return !(*this == other);
+            }
+        };
 
-		typedef uint32_t pin_number_t;  // Тип данных для номера пина
-		typedef std::function<void(pin_number_t)> ExternalInterruptCallback_t;  // Тип функции обратного вызова для внешних прерываний
+        typedef uint32_t pin_number_t;  // РўРёРї РґР°РЅРЅС‹С… РґР»СЏ РЅРѕРјРµСЂР° РїРёРЅР°
+        typedef std::function<void(pin_number_t)> ExternalInterruptCallback_t;  // РўРёРї С„СѓРЅРєС†РёРё РѕР±СЂР°С‚РЅРѕРіРѕ РІС‹Р·РѕРІР° РґР»СЏ РІРЅРµС€РЅРёС… РїСЂРµСЂС‹РІР°РЅРёР№
 
-		template <uint32_t IOCount> // Максимальный номер пина
-		class BaseGpio : public ControllerPeripheral {
-		public:
+        template <uint32_t IOCount> // РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ РЅРѕРјРµСЂ РїРёРЅР°
+        class BaseGpio : public ControllerPeripheral {
+        public:
 
-			static constexpr pin_number_t PinMaxNumber = IOCount;
+            static constexpr pin_number_t PinMaxNumber = IOCount; // РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїРёРЅРѕРІ
 
-			virtual ~BaseGpio() = default;
+            virtual ~BaseGpio() = default;
 
-			virtual bool isEnabled() const override {
-				return false;
-			}
+            virtual bool isEnabled() const override {
+                return false;
+            }
 
-			virtual void init() override {
-				enableClock();
-			}
+            virtual void init() override {
+                onEnableClock(); // Р’РєР»СЋС‡Р°РµС‚ С‚Р°РєС‚РёСЂРѕРІР°РЅРёРµ
+            }
 
-			// Инициализирует пин с указанными настройками
-			Error initPin(pin_number_t pin, const Settings& settings = Settings()) {
-				RG_ASSERT_MSG(isEnabled(), "GPIO interface currenty disabled.");
-				RG_ASSERT_MSG(pin <= PinMaxNumber, "Incorrect pin number.");
+            // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ РїРёРЅ СЃ СѓРєР°Р·Р°РЅРЅС‹РјРё РЅР°СЃС‚СЂРѕР№РєР°РјРё
+            Error initPin(pin_number_t pin, const Settings& settings = Settings()) {
+                RG_ASSERT_MSG(isEnabled(), "GPIO interface currently disabled.");
+                RG_ASSERT_MSG(pin <= PinMaxNumber, "Incorrect pin number.");
 
-				auto mode = settings.getMode();
-				if (mode == Mode::Output || mode == Mode::AlternateFunction) {
-					setOutputSpeed(pin, settings.getOutputSpeed());
-					setOutputType(pin, settings.getOutputType());
-				}
+                auto mode = settings.getMode();
+                if (mode == Mode::Output || mode == Mode::AlternateFunction) {
+                    setOutputSpeed(pin, settings.getOutputSpeed());
+                    setOutputType(pin, settings.getOutputType());
+                }
 
-				setPull(pin, settings.getPull());
+                setPull(pin, settings.getPull());
 
-				if (mode == Mode::AlternateFunction) {
-					//SetAlternateFunctions
-				}
+                if (mode == Mode::AlternateFunction) {
+                    //SetAlternateFunctions // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р°Р»СЊС‚РµСЂРЅР°С‚РёРІРЅС‹Рµ С„СѓРЅРєС†РёРё
+                }
 
-				setMode(pin, settings.getMode());
-				return Error::None;
-			}
+                setMode(pin, settings.getMode());
+                return Error::None;
+            }
 
-			// Устанавливает логическую единицу на указанном пине
-			void setPin(pin_number_t pin) {
-				RG_ASSERT_MSG(pin <= PinMaxNumber, "Incorrect pin number.");
-				setPinOutputState(pin, true);
-			}
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ Р»РѕРіРёС‡РµСЃРєСѓСЋ РµРґРёРЅРёС†Сѓ РЅР° СѓРєР°Р·Р°РЅРЅРѕРј РїРёРЅРµ
+            void setPin(pin_number_t pin) {
+                RG_ASSERT_MSG(pin <= PinMaxNumber, "Incorrect pin number.");
+                setPinOutputState(pin, true);
+            }
 
-			// Устанавливает логический ноль на указанном пине
-			void resetPin(pin_number_t pin) {
-				RG_ASSERT_MSG(pin <= PinMaxNumber, "Incorrect pin number.");
-				setPinOutputState(pin, false);
-			}
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ Р»РѕРіРёС‡РµСЃРєРёР№ РЅРѕР»СЊ РЅР° СѓРєР°Р·Р°РЅРЅРѕРј РїРёРЅРµ
+            void resetPin(pin_number_t pin) {
+                RG_ASSERT_MSG(pin <= PinMaxNumber, "Incorrect pin number.");
+                setPinOutputState(pin, false);
+            }
 
-			// Переключает состояние указанного пина на противоположное
-			void togglePin(pin_number_t pin) {
-				RG_ASSERT_MSG(pin <= PinMaxNumber, "Incorrect pin number.");
-				bool pinState = getPinOutputState(pin);
-				setPinOutputState(pin, !pinState);
-			}
+            // РџРµСЂРµРєР»СЋС‡Р°РµС‚ СЃРѕСЃС‚РѕСЏРЅРёРµ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РїРёРЅР° РЅР° РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕРµ
+            void togglePin(pin_number_t pin) {
+                RG_ASSERT_MSG(pin <= PinMaxNumber, "Incorrect pin number.");
+                bool pinState = getPinOutputState(pin);
+                setPinOutputState(pin, !pinState);
+            }
 
-			// Читает текущее входное состояние указанного пина
-			virtual bool readPin(pin_number_t pin) {
-				RG_ASSERT_MSG(pin <= PinMaxNumber, "Incorrect pin number.");
-				return getPinInputState(pin);
-			}
+            // Р§РёС‚Р°РµС‚ С‚РµРєСѓС‰РµРµ РІС…РѕРґРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РїРёРЅР°
+            virtual bool readPin(pin_number_t pin) {
+                RG_ASSERT_MSG(pin <= PinMaxNumber, "Incorrect pin number.");
+                return getPinInputState(pin);
+            }
 
-			// Обновляет настройки указанного пина, в случае если настройки некорректны - возвращает ошибку
-			virtual Error updateSettings(pin_number_t, const Settings&) { return Error(); };
-			// Возвращает текущие настройки указанного пина
-			virtual Settings getSettings(pin_number_t) const { return Settings(); };
+            // РћР±РЅРѕРІР»СЏРµС‚ РЅР°СЃС‚СЂРѕР№РєРё СѓРєР°Р·Р°РЅРЅРѕРіРѕ РїРёРЅР°, РІ СЃР»СѓС‡Р°Рµ РµСЃР»Рё РЅР°СЃС‚СЂРѕР№РєРё РЅРµРєРѕСЂСЂРµРєС‚РЅС‹ - РІРѕР·РІСЂР°С‰Р°РµС‚ РѕС€РёР±РєСѓ
+            virtual Error updateSettings(pin_number_t, const Settings&) { return Error(); }
 
-			// Устанавливает внешний обработчик прерываний
-			void setInterruptCallback(ExternalInterruptCallback_t callback) {
-				interruptCallback = std::move(callback);
-			}
+            // Р’РѕР·РІСЂР°С‰Р°РµС‚ С‚РµРєСѓС‰РёРµ РЅР°СЃС‚СЂРѕР№РєРё СѓРєР°Р·Р°РЅРЅРѕРіРѕ РїРёРЅР°
+            virtual Settings getSettings(pin_number_t) const { return Settings(); }
 
-			// Удаляет внешний обработчик прерываний
-			void clearInterruptCallback() {
-				interruptCallback = nullptr;
-			}
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РІРЅРµС€РЅРёР№ РѕР±СЂР°Р±РѕС‚С‡РёРє РїСЂРµСЂС‹РІР°РЅРёР№
+            void setInterruptCallback(ExternalInterruptCallback_t callback) {
+                interruptCallback = std::move(callback);
+            }
 
-		protected:
+            // РЈРґР°Р»СЏРµС‚ РІРЅРµС€РЅРёР№ РѕР±СЂР°Р±РѕС‚С‡РёРє РїСЂРµСЂС‹РІР°РЅРёР№
+            void clearInterruptCallback() {
+                interruptCallback = nullptr;
+            }
 
-			// Возвращает битовую маску для указанного пина
-			static constexpr uint32_t getPinMask(pin_number_t pin) {
-				return 1 << pin;
-			}
+        protected:
 
-			// Устанавливает состояние выхода пина
-			virtual void setPinOutputState(pin_number_t, bool) = 0;
-			// Возвращает состояние выхода пина
-			virtual bool getPinOutputState(pin_number_t) = 0;
+            // Р’РѕР·РІСЂР°С‰Р°РµС‚ Р±РёС‚РѕРІСѓСЋ РјР°СЃРєСѓ РґР»СЏ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РїРёРЅР°
+            static constexpr uint32_t getPinMask(pin_number_t pin) {
+                return 1 << pin;
+            }
 
-			// Возвращает состояние входа пина
-			virtual bool getPinInputState(pin_number_t) = 0;
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЃРѕСЃС‚РѕСЏРЅРёРµ РІС‹С…РѕРґР° РїРёРЅР°
+            virtual void setPinOutputState(pin_number_t, bool) = 0;
+            // Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃРѕСЃС‚РѕСЏРЅРёРµ РІС‹С…РѕРґР° РїРёРЅР°
+            virtual bool getPinOutputState(pin_number_t) = 0;
 
-			// Устанавливает режим работы пина
-			virtual void setMode(pin_number_t, Mode) = 0;
-			// Вовзращает режим работы пина
-			virtual Mode getMode(pin_number_t) const {
-				return Mode();
-			};
+            // Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃРѕСЃС‚РѕСЏРЅРёРµ РІС…РѕРґР° РїРёРЅР°
+            virtual bool getPinInputState(pin_number_t) = 0;
 
-			// Устанавливает тип подтяжки для пина
-			virtual void setPull(pin_number_t, Pull) = 0;
-			// Возвращает тип подтяжки для пина
-			virtual Pull getPull(pin_number_t) const {
-				return Pull();
-			};
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЂРµР¶РёРј СЂР°Р±РѕС‚С‹ РїРёРЅР°
+            virtual void setMode(pin_number_t, Mode) = 0;
+            // Р’РѕР·РІСЂР°С‰Р°РµС‚ СЂРµР¶РёРј СЂР°Р±РѕС‚С‹ РїРёРЅР°
+            virtual Mode getMode(pin_number_t) const {
+                return Mode();
+            }
 
-			// Устанавливает тип выходного сигнала пина
-			virtual void setOutputType(pin_number_t, OutputType) = 0;
-			// Возвращает тип выходного сигнала пина
-			virtual OutputType getOutputType(pin_number_t) const {
-				return OutputType();
-			};
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ С‚РёРї РїРѕРґС‚СЏР¶РєРё РґР»СЏ РїРёРЅР°
+            virtual void setPull(pin_number_t, Pull) = 0;
+            // Р’РѕР·РІСЂР°С‰Р°РµС‚ С‚РёРї РїРѕРґС‚СЏР¶РєРё РґР»СЏ РїРёРЅР°
+            virtual Pull getPull(pin_number_t) const {
+                return Pull();
+            }
 
-			// Устанавливает выходную скорость работы пина
-			virtual void setOutputSpeed(pin_number_t, OutputSpeed) = 0;
-			// Вовзращает выходную скорость работы пина
-			virtual OutputSpeed getOutputSpeed(pin_number_t) const {
-				return OutputSpeed();
-			};
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ С‚РёРї РІС‹С…РѕРґРЅРѕРіРѕ СЃРёРіРЅР°Р»Р° РїРёРЅР°
+            virtual void setOutputType(pin_number_t, OutputType) = 0;
+            // Р’РѕР·РІСЂР°С‰Р°РµС‚ С‚РёРї РІС‹С…РѕРґРЅРѕРіРѕ СЃРёРіРЅР°Р»Р° РїРёРЅР°
+            virtual OutputType getOutputType(pin_number_t) const {
+                return OutputType();
+            }
 
-			//Внешний обработчик прерываний
-			ExternalInterruptCallback_t interruptCallback;
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РІС‹С…РѕРґРЅСѓСЋ СЃРєРѕСЂРѕСЃС‚СЊ СЂР°Р±РѕС‚С‹ РїРёРЅР°
+            virtual void setOutputSpeed(pin_number_t, OutputSpeed) = 0;
+            // Р’РѕР·РІСЂР°С‰Р°РµС‚ РІС‹С…РѕРґРЅСѓСЋ СЃРєРѕСЂРѕСЃС‚СЊ СЂР°Р±РѕС‚С‹ РїРёРЅР°
+            virtual OutputSpeed getOutputSpeed(pin_number_t) const {
+                return OutputSpeed();
+            }
 
-			BaseGpio() {}
-		};
-	}
+            // Р’РЅРµС€РЅРёР№ РѕР±СЂР°Р±РѕС‚С‡РёРє РїСЂРµСЂС‹РІР°РЅРёР№
+            ExternalInterruptCallback_t interruptCallback;
+
+            BaseGpio() {}
+        };
+    }
 }
