@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include "BaseDma.hpp"
 
 int main()
 {

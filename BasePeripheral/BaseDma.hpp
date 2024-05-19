@@ -1,3 +1,6 @@
+#ifndef DMA_HPP_
+#define DMA_HPP_
+
 #include <iostream>
 #include <functional>
 #include "ControllerPeripheral.hpp"
@@ -5,10 +8,6 @@
 
 namespace BasePeripheral {
 	namespace Dma {
-
-		typedef uint32_t address_t;
-		typedef uint32_t channel_number_t;
-
 		// Перечисление для направления передачи данных
 		enum class Direction {
 			PeriphToMemory, // Передача данных от периферии к памяти
@@ -45,23 +44,11 @@ namespace BasePeripheral {
 
 		// Перечисление для ошибок DMA
 		enum class Error : error_t {
-			ChannelDisabled,    // Переферия DMA отключена
+			PeripheralDisabled, // Переферия DMA отключена
 			ChannelNumberError  // Некорректный номер канала
 		};
 
-		// Перечисление для приоритета DMA
-		enum class Priority {
-			Low,      // Низкий приоритет
-			Medium,   // Средний приоритет
-			High,     // Высокий приоритет
-			VeryHigh  // Очень высокий приоритет
-		};
-
-		// Перечисление для ошибок DMA
-		enum class Error : error_t {
-			ChannelDisabled,    // Переферия DMA отключена
-			ChannelNumberError  // Некорректный номер канала
-		};
+		typedef uint32_t address_t;
 
 		// Структура для хранения настроек памяти
 		struct MemorySettings {
@@ -143,7 +130,10 @@ namespace BasePeripheral {
 			}
 		};
 
-		template <uint32_t ChannelsCount> // ������������ ����� ����
+		typedef uint32_t channel_number_t;
+
+		//Максимальное количество каналов в блоке DMA
+		template <uint32_t ChannelsCount> 
 		class BaseDma : public ControllerPeripheral {
 		public:
 			static constexpr channel_number_t ChannelMaxNumber = ChannelsCount - 1;
@@ -163,20 +153,20 @@ namespace BasePeripheral {
 			// Метод для инициализации канала с проверкой валидности входных данных
 			bool initChannel(channel_number_t channel, const Settings& settings = Settings()) {
 				if (!isEnabled()) {
-					onError(ErrorEnum::ChannelDisabled); // Обработка ошибки: контроллер DMA отключен
+					onError(Error::PeripheralDisabled); // Обработка ошибки: контроллер DMA отключен
 					return false;
 				}
 				if (channel > ChannelMaxNumber) {
-					onError(ErrorEnum::ChannelNumberError); // Обработка ошибки: некорректный номер канала
+					onError(Error::ChannelNumberError); // Обработка ошибки: некорректный номер канала
 					return false;
 				}
-				return applySettings(channel, settings); // Применение настроек к каналу
+				return onSetSettings(channel, settings); // Применение настроек к каналу
 			}
 
 			// Метод для установки направления передачи данных с проверкой валидности входных данных
 			void setDirection(channel_number_t channel, Direction direction) {
 				if (channel > ChannelMaxNumber) {
-					onError(ErrorEnum::ChannelNumberError); // Обработка ошибки: некорректный номер канала
+					onError(Error::ChannelNumberError); // Обработка ошибки: некорректный номер канала
 					return;
 				}
 				onSetDirection(channel, direction); // Установка направления передачи данных
@@ -185,7 +175,7 @@ namespace BasePeripheral {
 			// Метод для установки режима передачи данных с проверкой валидности входных данных
 			void setMode(channel_number_t channel, Mode mode) {
 				if (channel > ChannelMaxNumber) {
-					onError(ErrorEnum::ChannelNumberError); // Обработка ошибки: некорректный номер канала
+					onError(Error::ChannelNumberError); // Обработка ошибки: некорректный номер канала
 					return;
 				}
 				onSetMode(channel, mode); // Установка режима передачи данных
@@ -194,7 +184,7 @@ namespace BasePeripheral {
 			// Метод для установки приоритета работы канала с проверкой валидности входных данных
 			void setPriority(channel_number_t channel, Priority priority) {
 				if (channel > ChannelMaxNumber) {
-					onError(ErrorEnum::ChannelNumberError); // Обработка ошибки: некорректный номер канала
+					onError(Error::ChannelNumberError); // Обработка ошибки: некорректный номер канала
 					return;
 				}
 				onSetPriority(channel, priority); // Установка приоритета работы канала
@@ -203,7 +193,7 @@ namespace BasePeripheral {
 			// Метод для установки настроек памяти с проверкой валидности входных данных
 			void setMemorySettings(channel_number_t channel, const MemorySettings& src, const MemorySettings& dst) {
 				if (channel > ChannelMaxNumber) {
-					onError(ErrorEnum::ChannelNumberError); // Обработка ошибки: некорректный номер канала
+					onError(Error::ChannelNumberError); // Обработка ошибки: некорректный номер канала
 					return;
 				}
 				onSetMemorySettings(channel, src, dst); // Установка настроек памяти
@@ -212,25 +202,27 @@ namespace BasePeripheral {
 		protected:
 
 			//Виртуальный метод установки настроек канала DMA (должен быть реализован в наследнике)
-			virtual bool onSetSettings(channel_number_t channel, const Settings& settings) = 0;
+			virtual bool onSetSettings(channel_number_t, const Settings&) = 0;
 
 			//Виртуальный метод установки направления передачи канала DMA (должен быть реализован в наследнике)
-			virtual void onSetDirection(channel_number_t channel, Direction direction) = 0;
+			virtual void onSetDirection(channel_number_t, Direction) = 0;
 
 			//Виртуальный метод установки режима передачи канала DMA (должен быть реализован в наследнике)
-			virtual void onSetMode(channel_number_t channel, Mode mode) = 0;
+			virtual void onSetMode(channel_number_t, Mode) = 0;
 
 			//Виртуальный метод установки приоритета передачи канала DMA (должен быть реализован в наследнике)
-			virtual void onSetPriority(channel_number_t channel, Priority priority) = 0;
+			virtual void onSetPriority(channel_number_t, Priority) = 0;
 
 			//Виртуальный метод установки настроек памяти канала DMA (должен быть реализован в наследнике)
-			virtual void onSetMemorySettings(channel_number_t channel, const MemorySettings& src, const MemorySettings& dst) = 0;
+			virtual void onSetMemorySettings(channel_number_t, const MemorySettings&, const MemorySettings&) = 0;
 
 			//Виртуальный метод включения передачи данных канала DMA (должен быть реализован в наследнике)
-			virtual void onEnableChannel(channel_number_t channel) = 0;
+			virtual void onEnableChannel(channel_number_t) = 0;
 
 			//Виртуальный метод выключения передачи данных канала DMA (должен быть реализован в наследнике)
-			virtual void onDisableChannel(channel_number_t channel) = 0;
+			virtual void onDisableChannel(channel_number_t) = 0;
 		};
 	}
 }
+
+#endif
